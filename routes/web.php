@@ -11,8 +11,12 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/',["as"=>"index.index","uses"=>"MainController@index"]);
 
-Route::get('/',["as"=>"index.index","uses"=>"TasksController@index"]);
+
+Route::delete('/',["as"=>"delete.todo","uses"=>"MainController@delete"]);
+
+Route::put('/',["as"=>"update.todo","uses"=>"MainController@update"]);
+
+Route::post('/',["as"=>"create.todo","uses"=>"MainController@create"]);
+
