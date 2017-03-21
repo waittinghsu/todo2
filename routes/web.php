@@ -13,10 +13,9 @@
 
 Route::get('/',["as"=>"index.index","uses"=>"MainController@index"]);
 
+Route::delete('{id}/delete',["as"=>"delete.todo","uses"=>"TasksController@delete"]);
 
-Route::delete('/',["as"=>"delete.todo","uses"=>"MainController@delete"]);
+Route::put('{id}/update',["as"=>"update.todo","uses"=>"TasksController@update"]);
 
-Route::put('/',["as"=>"update.todo","uses"=>"MainController@update"]);
-
-Route::post('/',["as"=>"create.todo","uses"=>"MainController@create"]);
+Route::post('create',["as"=>"create.todo","uses"=>"TasksController@create"]);
 

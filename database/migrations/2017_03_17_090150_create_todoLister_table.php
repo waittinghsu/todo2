@@ -13,7 +13,7 @@ class CreateTodoListerTable extends Migration
      */
     public function up()
     {
-        Schema::create('TodoList', function (Blueprint $table) {
+        Schema::create('todo_list', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->boolean('done');

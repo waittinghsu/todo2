@@ -29,7 +29,7 @@
 
 
                 <!-- 建立新 Task 表單 -->
-                <form action="{{ url('tasks/create') }}" method="POST" class="form-horizontal">
+                <form action="{{ url('create') }}" method="POST" class="form-horizontal">
                 {{ csrf_field() }}
 
                 <!-- Task 名稱 -->
@@ -67,25 +67,27 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                    @foreach($TodoLists as $todoList)
                     <tr>
                         <td class="table-text">
-                            <div class=" "></div>
+                            <div class="{{$todoList->done?'check':''}}">{{$todoList->name}}</div>
                         </td>
                         <td>
-
+                            @if(!$todoList->done)
                             <!-- 完成 Task 按鈕 -->
-                            <form action="" method="POST" class="form-inline">
+                            <form action="{{ url($todoList->id."/update") }}" method="POST" class="form-inline">
                                 {{ csrf_field() }}
+                                {{ method_field('PUT')}}
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-check"></i>完成
                                 </button>
                             </form>
-
+                            @endif
                             <!-- 刪除 Task 按鈕 -->
-                            <form action="" method="POST" class="form-inline">
+                            <form action="{{ url($todoList->id.'/delete') }}" method="POST" class="form-inline">
                                 {{ csrf_field() }}
-                                <input type="hidden" name="_method" value="DELETE">
+                                {{ method_field('DELETE') }}
+                                {{--<input type="hidden" name="_method" value="DELETE">--}}
                                 <input type="hidden" name="delId" id="task-delId" class="form-control" value="">
                                 <button type="submit" class="btn btn-danger">
                                     <i class="fa fa-trash"></i>刪除
@@ -93,7 +95,7 @@
                             </form>
                         </td>
                     </tr>
-
+                    @endforeach
                     </tbody>
                 </table>
             </div>
